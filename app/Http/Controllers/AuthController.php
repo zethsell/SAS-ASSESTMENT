@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SignUpRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\SignInRequest;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\SignInRequest;
+use App\Http\Requests\SignUpRequest;
+use App\Models\User;
+use Throwable;
 
 class AuthController extends Controller
 {
@@ -30,7 +31,7 @@ class AuthController extends Controller
             $user->token = $token;
 
             return response()->json(compact('user'));
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return response()->json($e, 500);
         }
     }
@@ -45,8 +46,7 @@ class AuthController extends Controller
             $user->save();
 
             return response()->json(compact('user'), 201);
-
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return response()->json($e, 500);
         }
     }
