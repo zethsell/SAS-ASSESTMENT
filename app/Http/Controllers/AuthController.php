@@ -24,7 +24,7 @@ class AuthController extends Controller
                 ], 401);
             }
 
-            $user = User::whereId(Auth::user()->id)->with('level')->first();
+            $user = User::whereId(Auth::user()->id)->first();
             $user->tokens()->delete();
 
             $token = $user->createToken('auth_token')->plainTextToken;
@@ -54,7 +54,7 @@ class AuthController extends Controller
     public function signOut()
     {
         try {
-            $user = User::whereId(Auth::user()->id)->with('level')->first();
+            $user = User::whereId(Auth::user()->id)->first();
             $user->tokens()->delete();
             return response()->noContent();
         } catch (Throwable $e) {
