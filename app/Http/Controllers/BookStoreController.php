@@ -19,22 +19,22 @@ class BookStoreController extends Controller
         return new BookStoreResource($round);
     }
 
-    public function show(BookStore $bookStore)
+    public function show(BookStore $book)
     {
-        $newRound = BookStore::whereId($bookStore->id)->with('statistic')->first();
+        $newRound = BookStore::whereId($book->id)->first();
         return new BookStoreResource($newRound);
     }
 
-    public function update(BookStoreRequest $request, BookStore $bookStore)
+    public function update(BookStoreRequest $request, BookStore $book)
     {
-        $bookStore->fill($request->validated());
-        $bookStore->save();
-        return new BookStoreResource($bookStore);
+        $book->fill($request->validated());
+        $book->save();
+        return new BookStoreResource($book);
     }
 
-    public function destroy(BookStore $bookStore)
+    public function destroy(BookStore $book)
     {
-        $bookStore->delete();
+        $book->delete();
         return response()->noContent();
     }
 }

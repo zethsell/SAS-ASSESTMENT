@@ -8,15 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class BookStore extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'name',
-        'isbn',
-        'value',
-    ];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
 }
