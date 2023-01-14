@@ -50,4 +50,15 @@ class AuthController extends Controller
             return response()->json($e, 500);
         }
     }
+
+    public function signOut()
+    {
+        try {
+            $user = User::whereId(Auth::user()->id)->with('level')->first();
+            $user->tokens()->delete();
+            return response()->noContent();
+        } catch (Throwable $e) {
+            return response()->json($e, 500);
+        }
+    }
 }
