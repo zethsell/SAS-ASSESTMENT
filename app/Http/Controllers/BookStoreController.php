@@ -15,14 +15,14 @@ class BookStoreController extends Controller
 
     public function store(BookStoreRequest $request)
     {
-        $round = BookStore::create($request->validated());
-        return new BookStoreResource($round);
+        $book = BookStore::create($request->validated());
+        return new BookStoreResource($book);
     }
 
     public function show(BookStore $book)
     {
-        $newRound = BookStore::whereId($book->id)->first();
-        return new BookStoreResource($newRound);
+        $newBook = BookStore::whereId($book->id)->first();
+        return new BookStoreResource($newBook);
     }
 
     public function update(BookStoreRequest $request, BookStore $book)
